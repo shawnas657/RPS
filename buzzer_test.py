@@ -4,16 +4,24 @@
 
 import RPi.GPIO as GPIO
 from time import sleep
+from gpiozero import TonalBuzzer
+from gpiozero.tones import Tone
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-buzzer = 23
+tb = TonalBuzzer(23)
+tone_C5 = Tone(note= "C5")
 
-while(True):
-    GPIO.setup(buzzer, GPIO.OUT)
-    GPIO.output(buzzer, GPIO.HIGH)
-    print("beep")
-    sleep(0.1)
-    GPIO.output(buzzer, GPIO.LOW)
-    print("no beep")
-    sleep(0.1)
+try:
+    while True:
+        tb.play(tone_C5)
+        print("beep")
+        sleep(0.1)
+        
+        tb.stop()
+        print("no beep")
+        sleep(0.1)
+
+except KeyboardInterrupt:
+    print("Exiting...")
+
+finally:
+    pass
