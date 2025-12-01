@@ -8,18 +8,27 @@ from gpiozero import TonalBuzzer
 from gpiozero.tones import Tone
 
 tb = TonalBuzzer(23)
-tone_C5 = Tone(note= "C5")
+tone_A3 = Tone(note= "A3")
+tone_G5 = Tone(note= "G5")
 
 try:
     while True:
-        tb.play(tone_C5)
-        print("beep")
-        sleep(0.1)
+        tb.play(tone_G5)
+        print("You Win")
+        sleep(0.5)
         
         tb.stop()
         print("no beep")
-        sleep(0.1)
-
+        sleep(0.5)
+        
+        tb.play(tone_A3)
+        print("You Lose")
+        sleep(0.5)
+        
+        tb.stop()
+        print("no beep")
+        sleep(0.5)
+        
 except KeyboardInterrupt:
     print("Exiting...")
 
